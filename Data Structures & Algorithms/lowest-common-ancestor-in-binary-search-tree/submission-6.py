@@ -1,0 +1,16 @@
+class Solution:
+    def lowestCommonAncestor(self, root: TreeNode, p: TreeNode, q: TreeNode) -> TreeNode:
+
+        def dfs(node):
+            if not node:
+                return None
+
+            if p.val < node.val and q.val < node.val:
+                return dfs(node.left)
+
+            if p.val > node.val and q.val > node.val:
+                return dfs(node.right)
+
+            return node
+
+        return dfs(root)
