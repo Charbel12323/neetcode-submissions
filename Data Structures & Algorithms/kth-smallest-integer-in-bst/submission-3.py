@@ -1,0 +1,26 @@
+class Solution:
+    def kthSmallest(self, root: Optional[TreeNode], k: int) -> int:
+        count = 0
+        answer = None
+
+        def dfs(node):
+            nonlocal count, answer
+
+            if not node:
+                return
+
+            dfs(node.left)
+
+            if answer is not None:
+                return
+
+            count += 1
+
+            if count == k:
+                answer = node.val
+                return
+
+            dfs(node.right)
+
+        dfs(root)
+        return answer
